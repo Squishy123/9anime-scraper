@@ -47,40 +47,36 @@ module.exports = {
     * @param {String} url 
     */
     getSource: async function (page, url) {
-        let sources = [];
         try {
             await page.goto(url, { waitUntil: "domcontentloaded" });
         } catch (err) { }
-        try {
-            await page.waitForSelector('#main > div > div.widget.servers > div.widget-body');
-            sources = await page.evaluate(() => {
-                let sources = [];
-                for (let p = 1; p <= document.querySelector('#main > div > div.widget.servers > div.widget-body').children.length; p++) {
-                    let id = document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).getAttribute('data-id');
-                    sources.push({ id: id, sourceList: [] });
-                    //range
-                    let range = (document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`)) ? document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).children.length : 1;
-                    for (let r = 0; r < range; r++) {
-                        if (r == 1) {
-                            let list = [];
-                            let listLength = [...document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul`).children].length;
-                            for (let i = 1; i <= listLength; i++) {
-                                list.push({ href: document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).href, index: i });
-                            }
-                            sources[p - 1].sourceList = list;
-                        } else {
-                            let list = [];
-                            let listLength = [...document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2})`).children].length;
-                            for (let i = 1; i <= listLength; i++) {
-                                list.push({ href: document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).href, index: i });
-                            }
-                            sources[p - 1].sourceList.push(...list);
+        let sources = await page.evaluate(() => {
+            let sources = [];
+            for (let p = 1; p <= document.querySelector('#main > div > div.widget.servers > div.widget-body').children.length; p++) {
+                let id = document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).getAttribute('data-id');
+                sources.push({ id: id, sourceList: [] });
+                //range
+                let range = (document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`)) ? document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).children.length : 1;
+                for (let r = 0; r < range; r++) {
+                    if (range == 1) {
+                        let list = [];
+                        let listLength = [...document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul`).children].length;
+                        for (let i = 1; i <= listLength; i++) {
+                            list.push({ href: document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).href, index: i });
                         }
+                        sources[p - 1].sourceList = list;
+                    } else {
+                        let list = [];
+                        let listLength = [...document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2})`).children].length;
+                        for (let i = 1; i <= listLength; i++) {
+                            list.push({ href: document.querySelector(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).href, index: i });
+                        }
+                        sources[p - 1].sourceList.push(...list);
                     }
                 }
-                return sources;
-            });
-        } catch (err) { }
+            }
+            return sources;
+        });
         return sources;
     },
     /**
@@ -102,11 +98,11 @@ module.exports = {
             let items = await page.evaluate(() => {
                 let items = [];
                 for (let c = 1; c < document.querySelector('#main > div > div:nth-child(1) > div.widget-body > div.film-list').children.length; c++) {
-                    items.push({poster: document.querySelector(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c})`).children[0].children[0].children[0].src, href: document.querySelector(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c})`).children[0].children[1].href, title: document.querySelector(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c})`).children[0].children[1].textContent });
+                    items.push({ poster: document.querySelector(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c})`).children[0].children[0].children[0].src, href: document.querySelector(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c})`).children[0].children[1].href, title: document.querySelector(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c})`).children[0].children[1].textContent });
                 }
                 return items;
             });
-            results[i-1].push(...items);
+            results[i - 1].push(...items);
         }
         return results;
     }

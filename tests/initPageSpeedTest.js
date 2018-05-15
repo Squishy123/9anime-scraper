@@ -1,4 +1,4 @@
-const scrape = require('./index.js');
+const scrape = require('../index.js');
 const puppeteer = require('puppeteer');
 
 (async () => {

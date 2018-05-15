@@ -1,0 +1,22 @@
+{
+  "name": "9anime-scraper",
+  "version": "1.0.0",
+  "description": "Scrapes data from 9anime.to",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Squishy123/9anime-scraper.git"
+  },
+  "author": "Squishy123",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Squishy123/9anime-scraper/issues"
+  },
+  "homepage": "https://github.com/Squishy123/9anime-scraper#readme",
+  "dependencies": {
+    "puppeteer": "^1.4.0"
+  }
+}

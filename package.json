@@ -1,6 +1,6 @@
 {
   "name": "9anime-scraper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Scrapes data from 9anime.to",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Squishy123/9anime-scraper#readme",
   "dependencies": {
-    "puppeteer": "^1.4.0"
+    "cheerio": "^1.0.0-rc.2",
+    "puppeteer": "^1.4.0",
+    "request": "^2.87.0"
   }
 }

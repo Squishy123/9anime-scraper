@@ -34,7 +34,6 @@ module.exports = {
     * Get the player source of a given 9anime episode url
     */
     getPlayer: async function (page, url) {
-
         await page.goto(url, { waitUntil: 'domcontentloaded' });
         await page.click('#player')
         try {
@@ -77,7 +76,7 @@ module.exports = {
                             }
                         }
                     }
-                    cb(sources);
+                    cb([...sources]);
                 } else {
                     cb(err)
                 }
@@ -110,7 +109,7 @@ module.exports = {
                             }
                         }
                     }
-                    cb(sources);
+                    cb([...sources]);
                 } else {
                     cb(err)
                 }
@@ -135,7 +134,7 @@ module.exports = {
                                 title: $(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c}) > div > a.name`).attr('data-jtitle')
                             });
                     }
-                    cb(results);
+                    cb([...results]);
                 } else {
                     cb(err)
                 }
@@ -154,7 +153,7 @@ module.exports = {
                                 title: $(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c}) > div > a.name`).attr('data-jtitle')
                             });
                     }
-                    cb(results);
+                    cb([...results]);
                 } else {
                     cb(err)
                 }

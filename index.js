@@ -78,7 +78,7 @@ module.exports = {
                             }
                         }
                     }
-                    cb(sources);
+                    cb([...sources]);
                 } else {
                     cb(err)
                 }
@@ -111,7 +111,7 @@ module.exports = {
                             }
                         }
                     }
-                    cb(sources);
+                    cb([...sources]);
                 } else {
                     cb(err)
                 }
@@ -136,7 +136,7 @@ module.exports = {
                                 title: $(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c}) > div > a.name`).attr('data-jtitle')
                             });
                     }
-                    cb(results);
+                    cb([...results]);
                 } else {
                     cb(err)
                 }
@@ -155,7 +155,7 @@ module.exports = {
                                 title: $(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c}) > div > a.name`).attr('data-jtitle')
                             });
                     }
-                    cb(results);
+                    cb([...results]);
                 } else {
                     cb(err)
                 }

@@ -71,8 +71,8 @@ module.exports = {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2})`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    if (!isNaN(Number((`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))))
-                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: Number((`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))});
+                                    if (!isNaN(Number($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))))
+                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: Number($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))});
                                 }
                                 sources[p - 1].sourceList.push(...list);
                             }
@@ -106,8 +106,8 @@ module.exports = {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2})`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    if (!isNaN(Number((`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))))
-                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: Number((`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))});
+                                    if (!isNaN(Number($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))))
+                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: Number($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))});
                                 }
                                 sources[p - 1].sourceList.push(...list);
                             }

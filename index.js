@@ -63,22 +63,22 @@ module.exports = {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    if (typeof $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment') == "number")
-                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('href'), index: i });
+                                    if (!isNaN(Number($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))))
+                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('href'), index: Number($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))});
                                 }
                                 sources[p - 1].sourceList = list;
                             } else {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2})`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    if (typeof $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('data-comment') == "number")
-                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: i });
+                                    if (!isNaN(Number((`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))))
+                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: Number((`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))});
                                 }
                                 sources[p - 1].sourceList.push(...list);
                             }
                         }
                     }
-                    cb([...sources]);
+                    cb(sources);
                 } else {
                     cb(err)
                 }
@@ -98,20 +98,22 @@ module.exports = {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('href'), index: i });
+                                    if (!isNaN(Number($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))))
+                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('href'), index: Number($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))});
                                 }
                                 sources[p - 1].sourceList = list;
                             } else {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2})`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: i });
+                                    if (!isNaN(Number((`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))))
+                                        list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: Number((`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment'))});
                                 }
                                 sources[p - 1].sourceList.push(...list);
                             }
                         }
                     }
-                    cb([...sources]);
+                    cb(sources);
                 } else {
                     cb(err)
                 }
@@ -136,7 +138,7 @@ module.exports = {
                                 title: $(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c}) > div > a.name`).attr('data-jtitle')
                             });
                     }
-                    cb([...results]);
+                    cb(results);
                 } else {
                     cb(err)
                 }
@@ -155,7 +157,7 @@ module.exports = {
                                 title: $(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c}) > div > a.name`).attr('data-jtitle')
                             });
                     }
-                    cb([...results]);
+                    cb(results);
                 } else {
                     cb(err)
                 }

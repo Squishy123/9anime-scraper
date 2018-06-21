@@ -54,7 +54,7 @@ module.exports = {
                     const $ = cheerio.load(body);
                     let sources = [];
                     for (let p = 1; p <= $('#main > div > div.widget.servers > div.widget-body').children().length; p++) {
-                        let id = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).attr('data-comment');
+                        let id = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).attr('data-id');
                         sources.push({ id: id, sourceList: [] });
                         //range
                         let range = ($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).length) ? $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).children().length : 1;
@@ -63,20 +63,20 @@ module.exports = {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('href'), index: i });
+                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('href'), index: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment')});
                                 }
                                 sources[p - 1].sourceList = list;
                             } else {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2})`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: i });
+                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('data-comment')});
                                 }
                                 sources[p - 1].sourceList.push(...list);
                             }
                         }
                     }
-                    cb([...sources]);
+                    cb(sources);
                 } else {
                     cb(err)
                 }
@@ -87,7 +87,7 @@ module.exports = {
                     const $ = cheerio.load(body);
                     let sources = [];
                     for (let p = 1; p <= $('#main > div > div.widget.servers > div.widget-body').children().length; p++) {
-                        let id = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).attr('data-comment');
+                        let id = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).attr('data-id');
                         sources.push({ id: id, sourceList: [] });
                         //range
                         let range = ($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).length) ? $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).children().length : 1;
@@ -96,20 +96,20 @@ module.exports = {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('href'), index: i });
+                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('href'), index: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul > li:nth-child(${i}) > a`).attr('data-comment')});
                                 }
                                 sources[p - 1].sourceList = list;
                             } else {
                                 let list = [];
                                 let listLength = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2})`).children().length;
                                 for (let i = 1; i <= listLength; i++) {
-                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: i });
+                                    list.push({ href: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('href'), index: $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > ul:nth-child(${r + 2}) > li:nth-child(${i}) > a`).attr('data-comment')});
                                 }
                                 sources[p - 1].sourceList.push(...list);
                             }
                         }
                     }
-                    cb([...sources]);
+                    cb(sources);
                 } else {
                     cb(err)
                 }
@@ -134,7 +134,7 @@ module.exports = {
                                 title: $(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c}) > div > a.name`).attr('data-jtitle')
                             });
                     }
-                    cb([...results]);
+                    cb(results);
                 } else {
                     cb(err)
                 }
@@ -153,7 +153,7 @@ module.exports = {
                                 title: $(`#main > div > div:nth-child(1) > div.widget-body > div.film-list > div:nth-child(${c}) > div > a.name`).attr('data-jtitle')
                             });
                     }
-                    cb([...results]);
+                    cb(results);
                 } else {
                     cb(err)
                 }

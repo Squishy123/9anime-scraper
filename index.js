@@ -54,7 +54,7 @@ module.exports = {
                     const $ = cheerio.load(body);
                     let sources = [];
                     for (let p = 1; p <= $('#main > div > div.widget.servers > div.widget-body').children().length; p++) {
-                        let id = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).attr('data-id');
+                        let id = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).attr('data-comment');
                         sources.push({ id: id, sourceList: [] });
                         //range
                         let range = ($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).length) ? $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).children().length : 1;
@@ -87,7 +87,7 @@ module.exports = {
                     const $ = cheerio.load(body);
                     let sources = [];
                     for (let p = 1; p <= $('#main > div > div.widget.servers > div.widget-body').children().length; p++) {
-                        let id = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).attr('data-id');
+                        let id = $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p})`).attr('data-comment');
                         sources.push({ id: id, sourceList: [] });
                         //range
                         let range = ($(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).length) ? $(`#main > div > div.widget.servers > div.widget-body > div:nth-child(${p}) > div`).children().length : 1;

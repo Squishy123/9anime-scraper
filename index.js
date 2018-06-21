@@ -34,7 +34,7 @@ module.exports = {
     * Get the player source of a given 9anime episode url
     */
     getPlayer: async function (page, url) {
-        await page.goto(url, { waitUntil: 'networkidle2' });
+        await page.goto(url, { waitUntil: 'domcontentloaded' });
         await page.click('#player')
         try {
             await page.waitForSelector('#player > iframe');
